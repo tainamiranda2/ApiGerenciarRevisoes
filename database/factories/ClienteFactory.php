@@ -17,7 +17,12 @@ class ClienteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nome'=>$this->faker->name,
+            'sexo' => $this->faker->boolean ? true : false,
+            'email'=>$this->faker->email,
+            'endereco'=>$this->faker->sentence(),
+            'telefone'=>$this->faker->phoneNumber(),
+            'data_nascimento' => $this->faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d H:i:s'),
         ];
     }
 }

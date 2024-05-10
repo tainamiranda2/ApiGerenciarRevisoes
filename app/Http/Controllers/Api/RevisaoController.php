@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Revisao;
 use Illuminate\Http\Request;
 
 class RevisaoController extends Controller
@@ -10,56 +11,71 @@ class RevisaoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+    public function __construct(private revisao $revisao){
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function index(revisao $revisao)
+    {
+     
+    $revisaos = $this->revisao->all();
+    
+    if ($revisaos->isEmpty()) {
+        return response()->json(['message' => 'Nenhuma revisao encontrado'], 404);
+    }
+    
+    return response()->json($revisaos, 200);
+        
+    }
     public function store(Request $request)
     {
-        //
+        $revisao=$this->revisao->create($request->all());
+    
+        return response()->json($revisao, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+public function show(string $id)
+{
+    $revisao = $this->revisao->find($id);
+    
+    if (!$revisao) {
+        return response()->json(['message' => 'revisao não encontrado'], 404);
     }
+    
+    return response()->json($revisao, 200);
+}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+/**
+ * Update the specified resource in storage.
+ */
+public function update(Request $request, string $id)
+{
+    $revisao = $this->revisao->find($id);
+    
+    if (!$revisao) {
+        return response()->json(['message' => 'revisao não encontrado'], 404);
     }
+    
+    $revisao->update($request->all());
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    return response()->json($revisao, 200);
+}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+/**
+ * Remove the specified resource from storage.
+ */
+public function destroy(string $id)
+{
+    $revisao = $this->revisao->find($id);
+    
+    if (!$revisao) {
+        return response()->json(['message' => 'revisao não encontrado'], 404);
     }
+    
+    $revisao->delete();
+
+    return response()->json([], 204);
+}
+
+
+    
 }
