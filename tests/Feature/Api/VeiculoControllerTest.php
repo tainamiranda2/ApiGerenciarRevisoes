@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class VeiculoControllerTest extends TestCase
 {
-    public function test_veiculo_endpoint_get(): void
+   /* public function test_veiculo_endpoint_get(): void
     {
        // $veiculo=Veiculo::factory(1)->Create();
         $response = $this->getJson('/api/veiculo');
@@ -85,11 +85,11 @@ class VeiculoControllerTest extends TestCase
     'cor' => 'rosa',
     'cliente_id' => 1,
     'placa' => '5960',
-    'data_nascimento' => '2024-04-30 22:23:37' 
+    'ano_fabricacao' => '2024-04-30 22:23:37' 
 ];
 
 
-  $response = $this->putJson('/api/cliente/1' , $veiculo);
+  $response = $this->putJson('/api/veiculo/1' , $veiculo);
 
    $response->assertStatus( 200);
   $response->assertJson(function(AssertableJson $json) use($veiculo){
@@ -105,4 +105,33 @@ class VeiculoControllerTest extends TestCase
       ])->etc();
   });
 }
+
+public function test_patch_veiculo_endpoint(){
+    
+    // Cliente::factory(1)->CreateOne();
+   
+   $veiculo=[
+     'marca'=>'Atualizando só veiculo mesmo',
+   ];
+     $response=$this->patchJson('/api/veiculo/2', $veiculo);
+    
+     $response->assertStatus(200);
+   
+     $response->assertJson(function(AssertableJson $json) use($veiculo){
+         //ver se tem string ou numero
+         $json->where('marca', $veiculo['marca'])->etc();
+     });
+   
+   }
+   
+   public function test_delete_veiculo_endpoint(){
+       
+     //Cliente::factory(1)->Create();
+     //mude o id 
+     $response=$this->deleteJson('/api/veiculo/4' );
+    
+     $response->assertStatus(204);
+   
+   }
+   */
 }

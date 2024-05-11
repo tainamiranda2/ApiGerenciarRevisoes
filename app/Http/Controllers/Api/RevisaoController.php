@@ -17,13 +17,13 @@ class RevisaoController extends Controller
     public function index(revisao $revisao)
     {
      
-    $revisaos = $this->revisao->all();
+    $revisoes = $this->revisao->all();
     
-    if ($revisaos->isEmpty()) {
+    if ($revisoes->isEmpty()) {
         return response()->json(['message' => 'Nenhuma revisao encontrado'], 404);
     }
     
-    return response()->json($revisaos, 200);
+    return response()->json($revisoes, 200);
         
     }
     public function store(Request $request)

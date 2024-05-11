@@ -13,7 +13,7 @@ class ClienteControllerTest extends TestCase
    /*
     public function test_cliente_endpoint_get(): void
     {
-       // $cliente=Cliente::factory(3)->Create();
+       // $cliente=Cliente::factory(1)->Create();
         $response = $this->getJson('/api/cliente');
         $response->assertStatus(200);
         $response->assertJson(function (AssertableJson $json) {
@@ -111,7 +111,7 @@ public function test_patch_cliente_endpoint(){
  // Cliente::factory(1)->CreateOne();
 
 $pedido=[
-  'nome'=>'Atualizando só pedido mesmo',
+  'nome'=>'Atualizando só cliente mesmo',
 ];
   $response=$this->patchJson('/api/cliente/2', $pedido);
  
