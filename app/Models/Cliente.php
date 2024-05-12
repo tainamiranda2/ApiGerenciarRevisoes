@@ -16,4 +16,9 @@ class Cliente extends Model
        'endereco',
        'data_nascimento'];
 
+//trabalhando com os relatórios
+       public function veiculos()
+    {
+        return $this->hasMany(Veiculo::class, 'cliente_id');
+    }
 }

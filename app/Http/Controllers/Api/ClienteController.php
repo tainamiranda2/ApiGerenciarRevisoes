@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
 use App\Http\Controllers\Controller;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
@@ -78,6 +77,4 @@ public function destroy(string $id)
     return response()->json([], 204);
 }
 
-
-    
 }
